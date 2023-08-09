@@ -1,0 +1,30 @@
+alias: Send list lost devices
+trigger:
+  - platform: time
+    at: "18:00:00"
+action:
+  - service: notify.mytelegram
+    data:
+      message: >
+        {%- set entities = [
+          'binary_sensor.0x00158d000106f811_contact',
+          'binary_sensor.0x00158d000544c30a_contact',
+          'binary_sensor.0x00158d0003cd5624_contact',
+          'binary_sensor.0x00158d00033eb202_smoke',
+          'binary_sensor.0x00158d00031dcd63_occupancy',
+          'binary_sensor.0x00158d000313dc6a_occupancy',
+          'binary_sensor.0x00158d00054b5a3b_occupancy',
+          'switch.0x00158d00045c2574_l1',
+          'switch.0x00158d0003f40865_l1',
+          'switch.0x842e14fffe5ad353',
+          'light.0x00158d00041136c9'
+        ] -%}
+
+        Довго не виходять на зв'язок: {%- set threshold = as_timestamp(now()) - 2000 %}
+        {%- for entity_id in entities %}
+          {%- set entity_state = state_attr(entity_id, 'last_seen') %}
+          {%- if entity_state and (entity_state | as_timestamp) < threshold %}
+            {{ state_attr(entity_id, 'friendly_name') }},
+          {%- endif %}
+        {%- endfor %}
+mode: single
