@@ -1,0 +1,37 @@
+# if you have not been home for a long time
+
+
+# Перший варіант 
+
+- alias: Включити світло на кухні при поверненні додому
+  trigger:
+    - platform: state
+      entity_id: person.sated
+      to: 'home'
+  condition:
+    - condition: numeric_state
+      entity_id: person.sated
+      attribute: away_from_home_for
+      above: 2
+  action:
+    - service: light.turn_on
+      entity_id: light.lamps
+  mode: single
+
+# Другий варіант 
+
+- alias: Включити світло на кухні при відкритті дверей
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.door_kitchen
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: person.sated
+      state: 'not_home'
+    - condition: template
+      value_template: "{{ (as_timestamp(now()) - as_timestamp(states.person.sated.last_changed)) / 3600 > 2 }}"
+  action:
+    - service: light.turn_on
+      entity_id: light.lamps
+  mode: single
