@@ -1,0 +1,64 @@
+alias: Control devices
+description: ""
+trigger:
+  - platform: state
+    entity_id:
+    
+    # всі пристрої WiFi
+      - person.daria
+      - person.irina
+      - person.sashko
+      - person.sated
+      - person.serg
+      - person.vlad
+      - person.nika
+      - switch.cond_605a
+      - switch.cond_605b
+      - switch.cond_605c
+      - switch.heat_605a
+      - switch.heat_605b
+      - switch.heat_605c
+      - camera.parking
+      - camera.outdoor
+      - camera.e1_pro_office
+      - sensor.power_meter_1_energy
+      - sensor.power_meter_2_energy
+      - media_player.google_mini
+      - light.gateway_light
+
+      # всі пристрої Zigbee
+      - sensor.ms_605d_linkquality
+      - sensor.ts_board_square_linkquality
+      - sensor.ts_board_round_linkquality
+      - sensor.ms_board_red_linkquality
+      - sensor.0x00158d00045c2574_linkquality
+      - sensor.desktop_lamp_linkquality
+      - sensor.0x00158d0004080a37_linkquality
+      - sensor.ws_board_aqara_linkquality
+      - sensor.ds_board_xiaomi_linkquality
+      - sensor.0x04cf8cdf3c75c1ae_linkquality
+      - sensor.ds_main_door_linkquality
+      - sensor.ms_board_linkquality
+      - sensor.ds_board_linkquality
+
+    to:
+      - unknown
+      - unavailable
+    for:
+      minutes: 5
+action:
+  - service: notify.telegram
+    data:
+      message: >-
+        {{ trigger.to_state.attributes.friendly_name }} - {{
+        trigger.to_state.state }}
+mode: single
+
+
+          # {% if is_state('sensor.ts_board_round_linkquality', 'unknown') or
+          #       is_state('sensor.ts_board_round_linkquality', 'unavailable') or
+          #       (as_timestamp(now()) - as_timestamp(states.sensor.ts_board_round_linkquality.last_changed)) >= 7200 %}
+          #   Датчик загубився
+          # {% else %}
+          #   Датчик в мережі
+          # {% endif %}

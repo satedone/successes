@@ -1,0 +1,50 @@
+Для створення списку інформації про останній зв'язок з пристроями, можна використовувати наступний шаблон. Цей шаблон визначає різницю в часі між "зараз" і останнім зв'язком для кожної з сутностей linkquality та форматує результат у вигляді списку:
+Цей шаблон виведе інформацію про останній зв'язок для кожної з сутностей linkquality у форматі "пристрій - час зв'язку у хвилинах".
+
+
+{% set entities_with_linkquality = namespace(entities=[]) %}
+{% set now = as_timestamp(now()) %}
+{% for state in states %}
+  {% if 'linkquality' in state.entity_id %}
+    {% set last_seen = as_timestamp(state.attributes.last_seen) %}
+    {% set time_difference = now - last_seen %}
+    {% set minutes = time_difference // 60 %}
+    {% set entities_with_linkquality.entities = entities_with_linkquality.entities + ["- " + state.entity_id.split('.')[1] + " - " + minutes|string + " хв."] %}
+  {% endif %}
+{% endfor %}
+{% if entities_with_linkquality.entities %}
+Останній зв'язок з пристроями:
+{{ "\n".join(entities_with_linkquality.entities) }}
+{% else %}
+Усі пристрої в мережі
+{% endif %}
+
+
+
+
+Цей шаблон повертає список пристроїв
+
+{% set entities_with_linkquality = namespace(entities=[]) %}
+{% for state in states %}
+  {% if 'linkquality' in state.entity_id %}
+    {% set entities_with_linkquality.entities = entities_with_linkquality.entities + ["- " + state.entity_id] %}
+  {% endif %}
+{% endfor %}
+{{ "\n".join(entities_with_linkquality.entities) }}
+
+
+
+Список усіх сутностей зі статусом 'Незрозуміло'
+
+{% set devices = namespace(list=[]) %}
+{% for state in states %}
+  {% if state.state == 'Незрозуміло' %}
+    {% set friendly_name = state.attributes.friendly_name %}
+    {% set device_id = state.entity_id.split('.')[1] %}
+    {% set device_name_parts = friendly_name.split(' ') %}
+    {% set device_info = device_name_parts[1:] | join(' ') | regex_replace(' - зв\'язок$', '') %}
+    {% set devices.list = devices.list + [device_info] %}
+  {% endif %}
+{% endfor %}
+Список пристроїв зі статусом "Незрозуміло":{{'\n'}}
+{{ devices.list | join('\n') }}

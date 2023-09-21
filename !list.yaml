@@ -1,0 +1,488 @@
+list_link:
+  template:
+    - sensor:
+        - name: "01. Датчик відкриття 605В - зв'язок"
+          state: >
+            {% set entity = 'binary_sensor.ds_605b_contact' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+              Давно не чутно
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "02. Датчик відкриття головних дверей - зв'язок"
+          state: >
+            {% set entity = 'binary_sensor.ds_main_door_contact' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+              Давно не чутно
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "03. Датчик відкриття Tuya Dashboard - зв'язок"
+          state: >
+            {% set entity = 'binary_sensor.ds_tuya_board_contact' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+              Давно не чутно
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "04. Датчик відкриття Xiaomi Dashboard - зв'язок"
+          state: >
+            {% set entity = 'binary_sensor.ds_xiaomi_board_contact' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+              Давно не чутно
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "05. Датчик руху 605B Dashboard - зв'язок"
+          state: >
+            {% set entity = 'binary_sensor.ms_605b_occupancy' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+              Давно не чутно
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "06. Датчик руху в тамбурі 605D - зв'язок"
+          state: >
+            {% set entity = 'binary_sensor.ms_605d_motion' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+              Давно не чутно
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "07. Датчик руху голубий Dashboard - зв'язок"
+          state: >
+            {% set entity = 'binary_sensor.ms_blue_board_occupancy' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+              Давно не чутно
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "08. Датчик руху червоний Dashboard - зв'язок"
+          state: >
+            {% set entity = 'binary_sensor.ms_board_red_occupancy' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+              Давно не чутно
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "09. Датчик вібрації Dashboard - зв'язок"
+          state: >
+            {% set entity = 'binary_sensor.vs_board_vibration' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+              Давно не чутно
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "10. Датчик протоку Aqara Dashboard - зв'язок"
+          state: >
+            {% set entity = 'binary_sensor.ws_board_aqara_water_leak' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+              Давно не чутно
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "11. Датчик протоку Tuya - зв'язок"
+          state: >
+            {% set entity = 'binary_sensor.ws_board_tuya_water_leak' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+              Давно не чутно
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "12. Двоклавішний перемикач Dashboard - зв'язок"
+          state: >
+            {% set entity = 'sensor.2_btn_switch_board_action' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+              Давно не чутно
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "13. Кнопка для перемикання настільної лампи - зв'язок"
+          state: >
+            {% set entity = 'sensor.bt_lamp_action' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+              Давно не чутно
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "14. Кубик Dashboard - зв'язок"
+          state: >
+            {% set entity = 'sensor.cube_action' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+              Давно не чутно
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "15. Пульт modcam LeTV - зв'язок"
+          state: >
+            {% set entity = 'sensor.remote_letv_action' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+              Давно не чутно
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "16. Датчик температури круглий Dashboard - зв'язок"
+          state: >
+            {% set entity = 'sensor.ts_board_round_temperature' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+              Давно не чутно
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "17. Датчик температури квадратний Dashboard - зв'язок"
+          state: >
+            {% set entity = 'sensor.ts_board_square_temperature' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+              Давно не чутно
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "18. Реле при вході для магніту дверей та світла 605А - зв'язок"
+          state: >
+            {% set entity = 'switch.light_605a' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+              Давно не чутно
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "19. Реле в 605В за стелею для вентиляції та світла 605В - зв'язок"
+          state: >
+            {% set entity = 'switch.relay_605b_l1' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+              Давно не чутно
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "20. Розетка LED-ленти - зв'язок"
+          state: >
+            {% set entity = 'switch.socket_led' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+              Давно не чутно
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "21. Реле світла 605C Метал - зв'язок"
+          state: >
+            {% set entity = 'switch.relay_605c' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+              Давно не чутно
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "22. Реле світла 605D Тамбур - зв'язок"
+          state: >
+            {% set entity = 'switch.relay_605d' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+              Давно не чутно
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "23. Реле світла 605D Тамбур - зв'язок"
+          state: >
+            {% set entity = 'switch.relay_605d' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+              Давно не чутно
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "24. Колонка Google Home Mini - зв'язок"
+          state: >
+            {% set entity = 'media_player.google_mini' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "25. Лічильник 605А - зв'язок"
+          state: >
+            {% set entity = 'sensor.power_meter_1_energy' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "26. Лічильник 605B - зв'язок"
+          state: >
+            {% set entity = 'sensor.power_meter_2_energy' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "27. Камера E1 Pro Office - зв'язок"
+          state: >
+            {% set entity = 'camera.e1_pro_office' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "28. Камера Коридор - зв'язок"
+          state: >
+            {% set entity = 'camera.outdoor' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "29. Камера Парковка - зв'язок"
+          state: >
+            {% set entity = 'camera.parking' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "30. Кондиціонер 605А - зв'язок"
+          state: >
+            {% set entity = 'switch.cond_605a' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "31. Кондиціонер 605В - зв'язок"
+          state: >
+            {% set entity = 'switch.cond_605b' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "32. Кондиціонер 605С - зв'язок"
+          state: >
+            {% set entity = 'switch.cond_605c' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "33. Конвектор 605А - зв'язок"
+          state: >
+            {% set entity = 'switch.heat_605a' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "34. Конвектор 605В - зв'язок"
+          state: >
+            {% set entity = 'switch.heat_605b' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "35. Конвектор 605С - зв'язок"
+          state: >
+            {% set entity = 'switch.heat_605c' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "36. Сигналізація Ajax - зв'язок"
+          state: >
+            {% set entity = 'alarm_control_panel.ajax' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "37. Розетка Монітор - зв'язок"
+          state: >
+            {% set entity = 'switch.monitor' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "38. Розетка Шлюзу - зв'язок"
+          state: >
+            {% set entity = 'switch.plug_wifi_test' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "39. Шлюз Xiaomi 1 - зв'язок"
+          state: >
+            {% set entity = 'light.gateway_light' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "40. Шлюз Xiaomi 2 - зв'язок"
+          state: >
+            {% set entity = 'light.gateway' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% else %}
+              ВСЕ ОК
+            {% endif %}

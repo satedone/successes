@@ -1,0 +1,49 @@
+sensor:
+  - platform: template
+    sensors:
+      person_entities:
+        friendly_name: "Список сутностей Person"
+        value_template: >
+          {%- set domain = 'person' -%}
+          {%- set entities = states | selectattr('domain', 'eq', domain) | map(attribute='entity_id') | list -%}
+          {{ entities }}
+          
+# [
+#   "person.sated",
+#   "person.vlad",
+#   "person.serg",
+#   "person.sashko",
+#   "person.daria",
+#   "person.irina"
+# ]          
+
+
+# А ось цей шаблон збире всі сутності які закінчуються на linkquality
+
+  - platform: template
+    sensors:
+      linkquality_entities:
+        friendly_name: "Список сутностей linkquality"
+        value_template: >
+            {% set entities_with_linkquality = namespace(entities=[]) %}
+            {% for state in states %}
+              {% if 'linkquality' in state.entity_id %}
+                {% set entities_with_linkquality.entities = entities_with_linkquality.entities + ["- " + state.entity_id] %}
+              {% endif %}
+            {% endfor %}
+            {{ "\n".join(entities_with_linkquality.entities) }}
+
+
+# - sensor.ms_605d_linkquality
+# - sensor.ts_board_square_linkquality
+# - sensor.ts_board_round_linkquality
+# - sensor.ms_board_red_linkquality
+# - sensor.0x00158d00045c2574_linkquality
+# - sensor.desktop_lamp_linkquality
+# - sensor.0x00158d0004080a37_linkquality
+# - sensor.ws_board_aqara_linkquality
+# - sensor.ds_board_xiaomi_linkquality
+# - sensor.0x04cf8cdf3c75c1ae_linkquality
+# - sensor.ds_main_door_linkquality
+# - sensor.ms_board_linkquality
+# - sensor.ds_board_linkquality

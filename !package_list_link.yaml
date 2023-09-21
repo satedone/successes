@@ -1,0 +1,470 @@
+list_link:
+  template:
+    - sensor:
+        - name: "Кнопка лампи - зв'язок"
+          state: >
+            {% set entity = 'sensor.bt_lamp_action' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+              Давно не чутно
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+        - name: "Датчик руху голубий - зв'язок"
+          state: >
+            {% set entity = 'binary_sensor.ms_blue_board_occupancy' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+              Давно не чутно
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+        - name: "Датчик дверей Xiaomi Dashboard - зв'язок"
+          state: >
+            {% set entity = 'binary_sensor.ds_xiaomi_board_contact' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+              Давно не чутно
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+        - name: "Датчик дверей Tuya Dashboard - зв'язок"
+          state: >
+            {% set entity = 'binary_sensor.ds_tuya_board_contact' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+              Давно не чутно
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+        - name: "Датчик руху Xiaomi Dashboard - зв'язок"
+          state: >
+            {% set entity = 'binary_sensor.ms_605b_occupancy' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+              Давно не чутно
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+        - name: "Датчик температури квадратний - зв'язок"
+          state: >
+            {% set entity = 'sensor.ts_board_square_temperature' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+              Давно не чутно
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+        - name: "Датчик температури круглий - зв'язок"
+          state: >
+            {% set entity = 'sensor.ts_board_round_temperature' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+              Давно не чутно
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+        - name: "Двоклавішний перемикач - зв'язок"
+          state: >
+            {% set entity = 'sensor.2_btn_switch_board_action' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+              Давно не чутно
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+        - name: "Кубік - зв'язок"
+          state: >
+            {% set entity = 'sensor.cube_action' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+              Давно не чутно
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+        - name: "Лампа настольна - зв'язок"
+          state: >
+            {% set entity = 'light.desktop_lamp' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+              Давно не чутно
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+        - name: "Датчик протоку Aqara - зв'язок"
+          state: >
+            {% set entity = 'binary_sensor.ws_board_aqara_water_leak' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+              Давно не чутно
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+        - name: "Датчик протоку Tuya - зв'язок"
+          state: >
+            {% set entity = 'binary_sensor.ws_board_tuya_water_leak' %}
+            {% if states(entity) == 'unavailable' %}
+              Втрачено
+            {% elif states(entity) == 'unknown' %}
+              Незрозуміло
+            {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+              Давно не чутно
+            {% else %}
+              ВСЕ ОК
+            {% endif %}
+
+# А краще створити список. Масив. 
+
+      # {% set entities = [
+        # 'sensor.bt_lamp_action',
+        # 'binary_sensor.ms_blue_board_occupancy',
+        # 'binary_sensor.ds_xiaomi_board_contact',
+        # 'binary_sensor.ds_tuya_board_contact',
+        # 'binary_sensor.ms_605b_occupancy',
+        # 'sensor.ts_board_square_temperature',
+        # 'sensor.ts_board_round_temperature',
+        # 'sensor.2_btn_switch_board_action'
+      # ] %}
+
+
+#---------------- НОРМ АЛЕ БЕЗ UNAVALIBLE  --------------------- #
+
+# {% set entities = [
+#   'sensor.bt_lamp_action',
+#   'binary_sensor.ms_blue_board_occupancy',
+#   'binary_sensor.ds_xiaomi_board_contact',
+#   'binary_sensor.ds_tuya_board_contact',
+#   'binary_sensor.ms_605b_occupancy',
+#   'sensor.ts_board_square_temperature',
+#   'sensor.ts_board_round_temperature'
+# ] %}
+
+# {% set lost_list = [] %}
+
+# {% for entity in entities %}
+#   {% if (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 14 %}
+#       {% set lost_list = lost_list + [entity] %}
+#   {% endif %}
+# {% endfor %}
+
+# Lost Devices: {{ lost_list | join(', ') }}
+
+# {{((as_timestamp(now()) - as_timestamp(state_attr('sensor.bt_lamp_action', 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int }}
+# {{((as_timestamp(now()) - as_timestamp(state_attr('binary_sensor.ms_blue_board_occupancy', 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int }}
+# {{((as_timestamp(now()) - as_timestamp(state_attr('binary_sensor.ds_xiaomi_board_contact', 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int }}
+# {{((as_timestamp(now()) - as_timestamp(state_attr('binary_sensor.ds_tuya_board_contact', 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int }}
+# {{((as_timestamp(now()) - as_timestamp(state_attr('binary_sensor.ms_605b_occupancy', 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int }}
+# {{((as_timestamp(now()) - as_timestamp(state_attr('binary_sensor.ds_tuya_board_contact', 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int }}
+# {{((as_timestamp(now()) - as_timestamp(state_attr('sensor.ts_board_square_temperature', 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int }}
+# {{((as_timestamp(now()) - as_timestamp(state_attr('sensor.ts_board_round_temperature', 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int }}
+
+
+
+# Список всіх створених 
+# Шаблон 
+            {% set entities_with_zv_iazok = namespace(entities=[]) %}
+            {% for state in states %}
+              {% if 'zv_iazok' in state.entity_id %}
+                {% set entities_with_zv_iazok.entities = entities_with_zv_iazok.entities + ["- " + state.entity_id] %}
+              {% endif %}
+            {% endfor %}
+            {{ "\n".join(entities_with_zv_iazok.entities) }}
+
+# Список
+- sensor.knopka_lampi_zv_iazok
+- sensor.datchik_rukhu_golubii_zv_iazok
+- sensor.datchik_dverei_xiaomi_dashboard_zv_iazok
+- sensor.datchik_dverei_tuya_dashboard_zv_iazok
+- sensor.datchik_rukhu_xiaomi_dashboard_zv_iazok
+- sensor.datchik_temperaturi_kvadratnii_zv_iazok
+- sensor.datchik_temperaturi_kruglii_zv_iazok
+- sensor.dvoklavishnii_peremikach_zv_iazok
+- sensor.kubik_zv_iazok
+- sensor.lampa_nastolna_zv_iazok
+- sensor.datchik_protoku_aqara_zv_iazok
+- sensor.datchik_protoku_tuya_zv_iazok            
+
+
+
+binary_sensor.ds_605b_contact	Датчик відкриття 605В
+binary_sensor.ds_main_door_contact	Датчик відкриття головних дверей
+binary_sensor.ds_tuya_board_contact	Датчик відкриття Tuya Dashboard
+binary_sensor.ds_xiaomi_board_contact	Датчик відкриття Xiaomi Dashboard
+binary_sensor.ms_605b_occupancy	Датчик руху 605B Dashboard
+binary_sensor.ms_605d_motion	Датчик руху в тамбурі 605D
+binary_sensor.ms_blue_board_occupancy	Датчик руху голубий Dashboard
+binary_sensor.ms_board_red_occupancy	Датчик руху червоний Dashboard
+binary_sensor.vs_board_vibration	Датчик вібрації Dashboard
+binary_sensor.ws_board_aqara_water_leak	Датчик протоку Aqara Dashboard
+binary_sensor.ws_board_tuya_water_leak	Датчик протоку Tuya
+light.desktop_lamp	Настільна лампа
+sensor.2_btn_switch_board_action	Двоклавішний перемикач Dashboard
+sensor.bt_lamp_action	Кнопка для перемикання настільної лампи
+sensor.cube_action	Кубик Dashboard
+sensor.remote_letv_action	Пульт modcam LeTV
+sensor.ts_board_round_temperature	Датчик температури круглий Dashboard
+sensor.ts_board_square_temperature	Датчик температури квадратний Dashboard
+switch.light_605a	Реле при вході для магніту дверей та світла 605А
+switch.relay_605b_l1	Реле в 605В за стелею для вентиляції та світла 605В
+switch.socket_led	Розетка LED-ленти
+switch.relay_605c	Реле світла 605C Метал
+switch.relay_605d	Реле світла 605D Тамбур
+
+
+list_link:
+  template:
+    - sensor:
+      - name: "Датчик відкриття 605В"
+        state: >
+          {% set entity = 'binary_sensor.ds_605b_contact' %}
+          {% if states(entity) == 'unavailable' %}
+            Втрачено
+          {% elif states(entity) == 'unknown' %}
+            Незрозуміло
+          {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+            Давно не чутно
+          {% else %}
+            ВСЕ ОК
+          {% endif %}
+
+      - name: "Датчик відкриття головних дверей"
+        state: >
+          {% set entity = 'binary_sensor.ds_main_door_contact' %}
+          {% if states(entity) == 'unavailable' %}
+            Втрачено
+          {% elif states(entity) == 'unknown' %}
+            Незрозуміло
+          {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+            Давно не чутно
+          {% else %}
+            ВСЕ ОК
+          {% endif %}
+
+      - name: "Датчик відкриття Tuya Dashboard"
+        state: >
+          {% set entity = 'binary_sensor.ds_tuya_board_contact' %}
+          {% if states(entity) == 'unavailable' %}
+            Втрачено
+          {% elif states(entity) == 'unknown' %}
+            Незрозуміло
+          {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+            Давно не чутно
+          {% else %}
+            ВСЕ ОК
+          {% endif %}
+
+      - name: "Датчик відкриття Xiaomi Dashboard"
+        state: >
+          {% set entity = 'binary_sensor.ds_xiaomi_board_contact' %}
+          {% if states(entity) == 'unavailable' %}
+            Втрачено
+          {% elif states(entity) == 'unknown' %}
+            Незрозуміло
+          {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+            Давно не чутно
+          {% else %}
+            ВСЕ ОК
+          {% endif %}
+      
+    - name: "Датчик руху 605B Dashboard"
+      state: >
+        {% set entity = 'binary_sensor.ms_605b_occupancy' %}
+        {% if states(entity) == 'unavailable' %}
+          Втрачено
+        {% elif states(entity) == 'unknown' %}
+          Незрозуміло
+        {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+          Давно не чутно
+        {% else %}
+          ВСЕ ОК
+        {% endif %}
+
+    - name: "Датчик руху в тамбурі 605D"
+      state: >
+        {% set entity = 'binary_sensor.ms_605d_motion' %}
+        {% if states(entity) == 'unavailable' %}
+          Втрачено
+        {% elif states(entity) == 'unknown' %}
+          Незрозуміло
+        {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+          Давно не чутно
+        {% else %}
+          ВСЕ ОК
+        {% endif %}
+
+    - name: "Датчик руху голубий Dashboard"
+      state: >
+        {% set entity = 'binary_sensor.ms_blue_board_occupancy' %}
+        {% if states(entity) == 'unavailable' %}
+          Втрачено
+        {% elif states(entity) == 'unknown' %}
+          Незрозуміло
+        {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+          Давно не чутно
+        {% else %}
+          ВСЕ ОК
+        {% endif %}
+
+    - name: "Датчик руху червоний Dashboard"
+      state: >
+        {% set entity = 'binary_sensor.ms_board_red_occupancy' %}
+        {% if states(entity) == 'unavailable' %}
+          Втрачено
+        {% elif states(entity) == 'unknown' %}
+          Незрозуміло
+        {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+          Давно не чутно
+        {% else %}
+          ВСЕ ОК
+        {% endif %}
+
+    - name: "Датчик вібрації Dashboard"
+      state: >
+        {% set entity = 'binary_sensor.vs_board_vibration' %}
+        {% if states(entity) == 'unavailable' %}
+          Втрачено
+        {% elif states(entity) == 'unknown' %}
+          Незрозуміло
+        {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+          Давно не чутно
+        {% else %}
+          ВСЕ ОК
+        {% endif %}
+
+    - name: "Датчик протоку Aqara Dashboard"
+      state: >
+        {% set entity = 'binary_sensor.ws_board_aqara_water_leak' %}
+        {% if states(entity) == 'unavailable' %}
+          Втрачено
+        {% elif states(entity) == 'unknown' %}
+          Незрозуміло
+        {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+          Давно не чутно
+        {% else %}
+          ВСЕ ОК
+        {% endif %}
+
+    - name: "Датчик протоку Tuya"
+      state: >
+        {% set entity = 'binary_sensor.ws_board_tuya_water_leak' %}
+        {% if states(entity) == 'unavailable' %}
+          Втрачено
+        {% elif states(entity) == 'unknown' %}
+          Незрозуміло
+        {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+          Давно не чутно
+        {% else %}
+          ВСЕ ОК
+        {% endif %}
+
+    - name: "Двоклавішний перемикач Dashboard"
+      state: >
+        {% set entity = 'sensor.2_btn_switch_board_action' %}
+        {% if states(entity) == 'unavailable' %}
+          Втрачено
+        {% elif states(entity) == 'unknown' %}
+          Незрозуміло
+        {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+          Давно не чутно
+        {% else %}
+          ВСЕ ОК
+        {% endif %}
+
+    - name: "Кнопка для перемикання настільної лампи"
+      state: >
+        {% set entity = 'sensor.bt_lamp_action' %}
+        {% if states(entity) == 'unavailable' %}
+          Втрачено
+        {% elif states(entity) == 'unknown' %}
+          Незрозуміло
+        {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+          Давно не чутно
+        {% else %}
+          ВСЕ ОК
+        {% endif %}
+
+    - name: "Кубик Dashboard"
+      state: >
+        {% set entity = 'sensor.cube_action' %}
+        {% if states(entity) == 'unavailable' %}
+          Втрачено
+        {% elif states(entity) == 'unknown' %}
+          Незрозуміло
+        {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+          Давно не чутно
+        {% else %}
+          ВСЕ ОК
+        {% endif %}
+
+    - name: "Пульт modcam LeTV"
+      state: >
+        {% set entity = 'sensor.remote_letv_action' %}
+        {% if states(entity) == 'unavailable' %}
+          Втрачено
+        {% elif states(entity) == 'unknown' %}
+          Незрозуміло
+        {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+          Давно не чутно
+        {% else %}
+          ВСЕ ОК
+        {% endif %}
+
+    - name: "Датчик температури круглий Dashboard"
+      state: >
+        {% set entity = 'sensor.ts_board_round_temperature' %}
+        {% if states(entity) == 'unavailable' %}
+          Втрачено
+        {% elif states(entity) == 'unknown' %}
+          Незрозуміло
+        {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+          Давно не чутно
+        {% else %}
+          ВСЕ ОК
+        {% endif %}
+
+    - name: "Датчик температури квадратний Dashboard"
+      state: >
+        {% set entity = 'sensor.ts_board_square_temperature' %}
+        {% if states(entity) == 'unavailable' %}
+          Втрачено
+        {% elif states(entity) == 'unknown' %}
+          Незрозуміло
+        {% elif (((as_timestamp(now()) - as_timestamp(state_attr(entity, 'last_seen'), '%Y-%m-%dT%H:%M:%S.%fZ')) / 60) | int) > 90 %}
+          Давно не чутно
+        {% else %}
+          ВСЕ ОК
+        {% endif %}

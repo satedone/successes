@@ -1,0 +1,15 @@
+sensor:
+  - platform: template
+    sensors:
+      entities_with_linkquality:
+        friendly_name: "Список всіх сутностей у яких є linkquality"
+        value_template: >
+              {% set entities_with_linkquality = namespace(entities=[]) %}
+              {% for state in states %}
+                {% if 'linkquality' in state.attributes %}
+                  {% set entities_with_linkquality.entities = entities_with_linkquality.entities + ["- " + state.entity_id] %}
+                {% endif %}
+              {% endfor %}
+              {{ "\n".join(entities_with_linkquality.entities) }}
+
+

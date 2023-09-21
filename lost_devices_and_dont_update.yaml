@@ -1,0 +1,99 @@
+
+# Якщо ви хочете відслідковувати оновлення якогось пристрою можна зробити наступним чином:
+
+# 1. Увімкнути сенсор linkquality у самому пристрої і тоді використовувати його як окремий сенсор та його стан буде тригером.
+
+# 2. Можна відслідковувати безпосередньо сам сенсор на тригер unknown/unavailable/last_changed.
+
+# 3. А можна відкрити всі атрибути сенсора і тоді вже задіяти глобальну перевірку. 
+#       Налаштування z2m > Settings > HA integration > Home Assistant legacy entity attributes  > ON
+
+# 4. А можна внести в конгфігуратор linkquality по замовченню.
+#       device_options:
+#         homeassistant:
+#           linkquality:
+#             enabled_by_default: true      
+
+# 5. last_seen
+
+
+
+sensor:
+
+  - platform: template
+    sensors:
+    
+      - sensor_status_by_linkquality:
+        friendly_name: "Статус сенсора за linkquality"
+        value_template: >-
+          {% if is_state('sensor.ts_board_round_linkquality', 'unknown') or
+                is_state('sensor.ts_board_round_linkquality', 'unavailable') or
+                (as_timestamp(now()) - as_timestamp(states.sensor.ts_board_round_linkquality.last_changed)) >= 7200 %}
+            Датчик загубився
+          {% else %}
+            Датчик в мережі
+          {% endif %}
+
+
+      - sensor_status_by_linkquality:
+        friendly_name: "Статус сенсора температури"
+        value_template: >
+          {% set two_hours_ago = now() - timedelta(hours=2) %}
+          {% if states('sensor.ts_board_round_temperature') == 'unknown' %}
+            Датчик загубився
+          {% elif states.sensor.ts_board_round_temperature.last_changed < two_hours_ago %}
+            Датчик загубився
+          {% else %}
+            Датчик в мережі
+          {% endif %}
+
+
+automation:
+  - alias: Втрачені пристрої за зв'язком
+    trigger:
+      - platform: state
+        entity_id:
+          - sensor.bt_lamp_action
+          - light.desktop_lamp
+          - binary_sensor.ds_board_contact #взагалі нема linkquality
+          - binary_sensor.ds_board_xiaomi_contact
+          - binary_sensor.ds_main_door_contact
+          - binary_sensor.ms_605d_motion
+          - binary_sensor.ms_board
+          - binary_sensor.ms_board_red_motion
+          - switch.magnet
+          - switch.light_605a
+          - sensor.ts_board_round_temperature
+          - sensor.ts_board_square_temperature #взагалі нема linkquality
+          - binary_sensor.ws_board_aqara_water_leak
+          - sensor.2_btn_switch_board_action #взагалі нема linkquality
+
+    action:
+      - delay: '2:00:00'
+      - condition: template
+        value_template: >-
+          {{ (as_timestamp(now()) - as_timestamp(trigger.from_state.last_changed)) >= 7200 }}
+      - condition: template
+        value_template: >-
+          {{ trigger.to_state.attributes.linkquality == trigger.from_state.attributes.linkquality }}
+      - service: notify.telegram 
+        data_template:
+          message: |
+            {{ trigger.to_state.name }} загубив зв'язок протягом 2 годин
+
+
+
+
+# Відкриваємо відображення всіх last seen 
+# Потім збираємо їх у масив. 
+
+            # {% set entities_with_last_seen = namespace(entities=[]) %}
+            # {% for state in states %}
+            #   {% if 'last_seen' in state.entity_id %}
+            #     {% set entities_with_last_seen.entities = entities_with_last_seen.entities + ["- " + state.entity_id] %}
+            #   {% endif %}
+            # {% endfor %}
+            # {{ "\n".join(entities_with_last_seen.entities) }}
+
+
+            
